@@ -1,0 +1,5 @@
+embedding_size: 64
+n_layers: 2
+reg_weight: 1e-05
+training_neg_sample_num: 0
+distill_temperature: 4          # float the distill temperature

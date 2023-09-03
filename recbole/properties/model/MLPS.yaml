@@ -1,0 +1,5 @@
+embedding_size: 384               # (int) The embedding size of features.
+mlp_hidden_size: [256, 128, 64]   # The hidden size of MLP layers.
+dropout_prob: 0.1                 # (float) The dropout rate.
+cf_weight: 0.7                    # (float) The CF teacher weight.
+

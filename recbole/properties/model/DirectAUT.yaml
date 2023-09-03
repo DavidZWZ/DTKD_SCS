@@ -1,0 +1,4 @@
+embedding_size: 64
+encoder: LightGCN 
+n_layers: 3
+gamma: 0.999

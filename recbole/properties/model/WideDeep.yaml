@@ -1,0 +1,4 @@
+embedding_size: 384 #10
+mlp_hidden_size: [256, 128, 64] #[32, 16, 8]
+dropout_prob: 0.1
+distill_temperature: 2  

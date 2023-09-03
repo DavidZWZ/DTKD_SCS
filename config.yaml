@@ -1,0 +1,57 @@
+# dataset config 
+
+
+load_col:  # ml-1m
+    inter: ['user_id', 'item_id'] 
+    user: ['user_id', 'age', 'gender', 'occupation', 'zip_code']
+    item: ['item_id', 'movie_title', 'release_year', 'genre']
+title: movie_title
+
+
+# load_col:  # yelp2018b
+#     inter: ['user_id', 'item_id'] 
+#     user: ['user_id', 'user_review_count', 'user_useful', 'user_funny', 'user_cool', 'fans','average_stars']
+#     item: ['item_id', 'item_name', 'city', 'state', 'postal_code','latitude', 'longitude', 'item_stars', 'item_review_count','is_open', 'categories'] #'movie_title',
+# title: item_name
+
+
+normalize_all: True
+NEG_PREFIX: neg_
+LABEL_FIELD: label
+
+gpu_id: 0
+# Training and evaluation config
+epochs: 300
+epochs_con: 10
+epochs_cf: 10
+epochs_kd_emb: 300
+epochs_kd_sf: 300
+epochs_kd_score: 300
+eval_step: 1
+stopping_step: 10
+
+distill_temperature: 4
+saved_con_model_file: './saved/LinearT/LinearT-Aug-11-2023_03-58-03.pth' #'./saved/LinearT/LinearT-Apr-10-2023_22-25-13.pth' # LinearT
+saved_cf_model_file: './saved/DirectAUT/DirectAUT-Aug-11-2023_04-09-55.pth' #'./saved/DirectAUT/DirectAUT-Apr-18-2023_01-45-42.pth' # DirectAUT
+
+learner: adam
+learning_rate: 0.001
+weight_decay: 0.0
+
+train_batch_size: 1024 
+eval_batch_size: 4096 
+eval_args:
+  split: {'RS':[0.75, 0.05, 0.2], 'UR':[0.8, 0.2]}
+  order: RO 
+  group_by: user
+  mode: full 
+
+positive_len: 5 #5 #20
+neg_sampling:
+    uniform: 1 # uniform: directly treat inter as positive
+
+valid_metric: NDCG@3
+metrics: ['NDCG', 'Recall', 'Precision','Hit'] 
+topk: 3 # 3 10
+
+
